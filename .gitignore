@@ -12,3 +12,12 @@ Makefile.in
 /install-sh
 /missing
 /stamp-h1
+
+www/*
+!www/wp-content/
+
+www/wp-content/*
+!www/wp-content/themes
+
+www/wp-content/themes/*
+!www/wp-content/themes/AngularJs
