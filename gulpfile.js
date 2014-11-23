@@ -4,19 +4,8 @@ var gulp = require('gulp'),
     runSequence = require('run-sequence'),
     uglify = require('gulp-uglify'),
     concat = require('gulp-concat'),
-    minifyHTML = require('gulp-minify-html'),
-    webserver = require('gulp-webserver')
+    minifyHTML = require('gulp-minify-html')
     ;
-
-
-gulp.task('webserver', function() {
-  gulp.src('app')
-    .pipe(webserver({
-      livereload: true,
-      directoryListing: true,
-      open: true
-    }));
-});
 
 
 gulp.task('less', function () {
@@ -24,13 +13,13 @@ gulp.task('less', function () {
     .pipe(less({
       paths: [ path.join(__dirname, 'less', 'includes') ]
     }))
-    .pipe(gulp.dest('./build/css'));
+    .pipe(gulp.dest('./www/wp-content/themes/AngularJs/css'));
 });
 
 gulp.task('compress', function() {
     gulp.src('./src/js/*.js')
         .pipe(uglify())
-        .pipe(gulp.dest('./build/js'))
+        .pipe(gulp.dest('./www/wp-content/themes/AngularJs/js'))
 });
 
 
@@ -62,4 +51,4 @@ gulp.task('build', function() {
 
 
 
-gulp.task('default', ['watch', 'webserver']);
+gulp.task('default', ['watch']);
