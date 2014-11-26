@@ -17,7 +17,18 @@ gulp.task('less', function () {
 });
 
 gulp.task('compress', function() {
-    gulp.src('./src/js/*.js')
+    gulp.src(
+        './src/js/*.js'
+    )
+        .pipe(uglify())
+        .pipe(gulp.dest('./src/dist'))
+});
+
+gulp.task('compress_build', function() {
+    gulp.src([
+        './src/js/lib/angular/angular.min.js',
+        './src/js/*.js'
+    ])
         .pipe(uglify())
         .pipe(gulp.dest('./www/wp-content/themes/AngularJs/js'))
 });
@@ -43,6 +54,7 @@ gulp.task('watch', function() {
 gulp.task('build', function() {
     runSequence(
         'less',
+        'compress_build',
         function() {
             console.log('built ok')
         });
