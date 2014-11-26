@@ -17,9 +17,10 @@ gulp.task('less', function () {
 });
 
 gulp.task('compress', function() {
-    gulp.src(
-        './src/js/*.js'
-    )
+    gulp.src([
+        './src/js/*.js',
+        './src/js/modules/*/*.js'
+    ])
         .pipe(uglify())
         .pipe(gulp.dest('./src/dist'))
 });
