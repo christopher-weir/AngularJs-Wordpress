@@ -17,3 +17,4 @@ www/wp-content/themes/*
 .DS_Store
 src/lib
 bower_components
+src/dist
