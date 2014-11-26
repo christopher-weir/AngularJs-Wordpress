@@ -7,7 +7,7 @@ var gulp = require('gulp'),
     minifyHTML = require('gulp-minify-html')
     ;
 
-
+// Task: less
 gulp.task('less', function () {
   gulp.src('./src/less/site.less')
     .pipe(less({
@@ -16,23 +16,41 @@ gulp.task('less', function () {
     .pipe(gulp.dest('./www/wp-content/themes/AngularJs/css'));
 });
 
-gulp.task('compress', function() {
+
+
+// Task: concact
+gulp.task('concact-watch', function() {
     gulp.src([
+        './src/js/lib/angular/angular.min.js',
         './src/js/*.js',
         './src/js/modules/*/*.js'
     ])
-        .pipe(uglify())
-        .pipe(gulp.dest('./src/dist'))
-});
-
-gulp.task('compress_build', function() {
-    gulp.src([
-        './src/js/lib/angular/angular.min.js',
-        './src/js/*.js'
-    ])
-        .pipe(uglify())
+        .pipe(concat('site.js'))
         .pipe(gulp.dest('./www/wp-content/themes/AngularJs/js'))
 });
+
+
+gulp.task('concact-build', function() {
+    gulp.src([
+        './src/js/lib/angular/angular.min.js',
+        './src/js/*.js',
+        './src/js/modules/*/*.js'
+    ])
+        .pipe(concat('site.js'))
+        .pipe(gulp.dest('./src/dist/'))
+});
+
+
+
+// Task: compress
+gulp.task('compress', function() {
+    gulp.src(
+        './src/dist/*.js'
+    )
+        .pipe(uglify('site.js'))
+        .pipe(gulp.dest('./www/wp-content/themes/AngularJs/js'))
+});
+
 
 
 /*
@@ -42,7 +60,7 @@ gulp.task('watch', function() {
 
     // Watch the less files
     gulp.watch('./src/less/*.less', ['less']);
-    gulp.watch('./src/js/*.js', ['compress']);
+    gulp.watch('./src/js/*.js', ['concact-watch']);
 
 
 });
@@ -55,7 +73,8 @@ gulp.task('watch', function() {
 gulp.task('build', function() {
     runSequence(
         'less',
-        'compress_build',
+        'concact-build',
+        'compress',
         function() {
             console.log('built ok')
         });
