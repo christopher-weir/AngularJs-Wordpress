@@ -22,10 +22,11 @@ gulp.task('less', function () {
 gulp.task('concact-watch', function() {
     gulp.src([
         './src/js/lib/angular/angular.min.js',
-        './src/js/*.js',
+        './src/js/config.js',
+        './src/js/app.js',
         './src/js/modules/*/*.js'
     ])
-        .pipe(concat('site.js'))
+        .pipe(concat('app.js'))
         .pipe(gulp.dest('./www/wp-content/themes/AngularJs/js'))
 });
 
@@ -33,10 +34,11 @@ gulp.task('concact-watch', function() {
 gulp.task('concact-build', function() {
     gulp.src([
         './src/js/lib/angular/angular.min.js',
-        './src/js/*.js',
+        './src/js/config.js',
+        './src/js/app.js',
         './src/js/modules/*/*.js'
     ])
-        .pipe(concat('site.js'))
+        .pipe(concat('app.js'))
         .pipe(gulp.dest('./src/dist/'))
 });
 
