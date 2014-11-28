@@ -5,7 +5,8 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     concat = require('gulp-concat'),
     minifyHTML = require('gulp-minify-html'),
-    minifyCSS = require('gulp-minify-css')
+    minifyCSS = require('gulp-minify-css'),
+    replace = require('gulp-replace')
     ;
 
 // Task: less
@@ -74,6 +75,7 @@ gulp.task('compress-css', function() {
         .pipe(minifyCSS({
             keepSpecialComments :   1
         }))
+        .pipe(replace('/*!', '/*'))
         .pipe(gulp.dest('./www/wp-content/themes/AngularJs/'))
 });
 
