@@ -8,12 +8,21 @@ var gulp = require('gulp'),
     ;
 
 // Task: less
-gulp.task('less', function () {
-  gulp.src('./src/less/site.less')
+gulp.task('less-watch', function () {
+  gulp.src('./src/less/style.less')
     .pipe(less({
       paths: [ path.join(__dirname, 'less', 'includes') ]
     }))
-    .pipe(gulp.dest('./www/wp-content/themes/AngularJs/css'));
+    .pipe(gulp.dest('./www/wp-content/themes/AngularJs'));
+});
+
+// Task: less
+gulp.task('less-build', function () {
+  gulp.src('./src/less/style.less')
+    .pipe(less({
+      paths: [ path.join(__dirname, 'less', 'includes') ]
+    }))
+    .pipe(gulp.dest('./src/dist/'));
 });
 
 
@@ -39,18 +48,18 @@ gulp.task('concact-build', function() {
         './src/js/modules/*/*.js'
     ])
         .pipe(concat('app.js'))
-        .pipe(gulp.dest('./src/dist/'))
+        .pipe(gulp.dest('./src/dist/'));
 });
 
 
 
 // Task: compress
-gulp.task('compress', function() {
+gulp.task('compress-js', function() {
     gulp.src(
         './src/dist/*.js'
     )
         .pipe(uglify('site.js'))
-        .pipe(gulp.dest('./www/wp-content/themes/AngularJs/js'))
+        .pipe(gulp.dest('./www/wp-content/themes/AngularJs/js'));
 });
 
 
@@ -61,7 +70,7 @@ gulp.task('compress', function() {
 gulp.task('watch', function() {
 
     // Watch the less files
-    gulp.watch('./src/less/*.less', ['less']);
+    gulp.watch('./src/less/*.less', ['less-watch']);
     gulp.watch('./src/js/*.js', ['concact-watch']);
 
 
@@ -74,9 +83,9 @@ gulp.task('watch', function() {
 */
 gulp.task('build', function() {
     runSequence(
-        'less',
+        'less-build',
         'concact-build',
-        'compress',
+        'compress-js',
         function() {
             console.log('built ok')
         });
