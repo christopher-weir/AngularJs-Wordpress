@@ -1,0 +1,18 @@
+/*
+	Theme Name: AngularJS Wordpress
+	Theme URI: https://github.com/christopher-weir/AngularJs-Wordpress
+	Description: A blank wordpress theme using angular js
+	Version: 0.1
+	Author: Christopher Weir (@dead_pony)
+	Author URI: http://christopher-weir.com
+	Tags: Angularjs, Angular-js, Blank, HTML5, CSS3
+
+	License: MIT
+	License URI: http://opensource.org/licenses/mit-license.php
+*/
+html {
+  background-color: #ffcc00;
+}
+body {
+  color: #ffcc00;
+}
