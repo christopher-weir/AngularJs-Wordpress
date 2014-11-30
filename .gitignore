@@ -19,3 +19,4 @@ src/lib
 bower_components
 src/dist
 src/js/lib
+www/wp-content/themes/AngularJs/js/app.js
