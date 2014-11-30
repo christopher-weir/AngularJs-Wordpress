@@ -20,6 +20,7 @@
     "angular": "~1.2.23"
   },
   "dependencies": {
-    "angular-ui-router": "~0.2.13"
+    "angular-ui-router": "~0.2.13",
+    "pure": "~0.5.0"
   }
 }
