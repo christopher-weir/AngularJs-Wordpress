@@ -33,10 +33,12 @@ gulp.task('less-build', function () {
 // Task: concact
 gulp.task('concact-watch', function() {
     gulp.src([
-        './src/js/lib/angular/angular.min.js',
+        './src/js/lib/angular/angular.js',
+        './src/js/lib/angular-ui-router/release/angular-ui-router.js',
         './src/js/config.js',
         './src/js/app.js',
-        './src/js/modules/*/*.js'
+        './src/js/angular-modules/**/*.js',
+        './src/js/angular-modules/**/**/*.js'
     ])
         .pipe(concat('app.js'))
         .pipe(gulp.dest('./www/wp-content/themes/AngularJs/js'))
@@ -45,10 +47,12 @@ gulp.task('concact-watch', function() {
 
 gulp.task('concact-build', function() {
     gulp.src([
-        './src/js/lib/angular/angular.min.js',
+        './src/js/lib/angular/angular.js',
+        './src/js/lib/angular-ui-router/release/angular-ui-router.js',
         './src/js/config.js',
         './src/js/app.js',
-        './src/js/modules/*/*.js'
+        './src/js/angular-modules/**/*.js',
+        './src/js/angular-modules/**/**/*.js'
     ])
         .pipe(concat('app.js'))
         .pipe(gulp.dest('./src/dist/'))
@@ -59,9 +63,9 @@ gulp.task('concact-build', function() {
 // Task: compress js
 gulp.task('compress-js', function() {
     gulp.src(
-        './src/dist/*.js'
+        './src/dist/app.js'
     )
-        .pipe(uglify('site.js'))
+        .pipe(uglify('app.js'))
         .pipe(gulp.dest('./www/wp-content/themes/AngularJs/js'))
 });
 
@@ -89,6 +93,8 @@ gulp.task('watch', function() {
     // Watch the less files
     gulp.watch('./src/less/*.less', ['less-watch']);
     gulp.watch('./src/js/*.js', ['concact-watch']);
+    gulp.watch('./src/js/**/*.js', ['concact-watch']);
+    gulp.watch('./src/js/**/**/*.js', ['concact-watch']);
 
 
 });
