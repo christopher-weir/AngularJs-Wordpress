@@ -1,11 +1,19 @@
 'use strict';
 
 angular.module('core')
-    .controller('SiteCtrl', [
+    .controller('PagesCtrl', [
         '$scope',
-        '$Core',
-        function ( $scope, $Core ) {
-            console.log('loaded');
-            console.log('$Core.getJsonUrl(): ' + $Core.getJsonUrl() + '\n');
+        '$Pages',
+        function ( $scope, $Pages ) {
+
+            $Pages.getPages( function(_data){
+                console.log(_data);
+            });
+
+            $Pages.getPageById( 5, function(_data){
+                console.log(_data);
+            });
+
+
         }
     ]);

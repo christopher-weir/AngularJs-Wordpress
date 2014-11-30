@@ -6,13 +6,42 @@ angular.module('pages')
 
 
     '$http',
+    '$Core',
 
-    function( $http ) {
+    function( $http, $Core ) {
 
         return  {
 
-            getPageById: function(){
-                console.log('page');
+            getPageById: function( _id, callback ){
+
+                $http({
+
+                    method  : 'GET',
+                    url     : $Core.getJsonUrl() + 'posts/' + String( _id )
+
+                }).
+                success(function(data) {
+                    callback( data );
+                }).
+                error(function (data) {
+                    callback( data );
+                });
+            },
+
+            getPages: function( callback ){
+
+                $http({
+
+                    method  : 'GET',
+                    url     : $Core.getJsonUrl() + 'posts'
+
+                }).
+                success(function(data) {
+                    callback( data );
+                }).
+                error(function (data) {
+                    callback( data );
+                });
             }
 
         };
