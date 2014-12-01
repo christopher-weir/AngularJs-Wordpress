@@ -33,8 +33,8 @@ gulp.task('less-build', function () {
 // Task: concact
 gulp.task('concact-watch', function() {
     gulp.src([
-        './src/js/lib/angular/angular.js',
-        './src/js/lib/angular-ui-router/release/angular-ui-router.js',
+        './src/bower_components/angular/angular.js',
+        './src/bower_components/angular-ui-router/release/angular-ui-router.js',
         './src/js/config.js',
         './src/js/app.js',
         './src/js/angular-modules/**/*.js',
@@ -47,8 +47,8 @@ gulp.task('concact-watch', function() {
 
 gulp.task('concact-build', function() {
     gulp.src([
-        './src/js/lib/angular/angular.js',
-        './src/js/lib/angular-ui-router/release/angular-ui-router.js',
+        './src/bower_components/angular/angular.js',
+        './src/bower_components/angular-ui-router/release/angular-ui-router.js',
         './src/js/config.js',
         './src/js/app.js',
         './src/js/angular-modules/**/*.js',
