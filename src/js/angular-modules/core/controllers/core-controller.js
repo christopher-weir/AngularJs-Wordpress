@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('pages')
+angular.module('posts')
     .controller('SiteCtrl', [
         '$scope',
         '$Core',
@@ -9,3 +9,5 @@ angular.module('pages')
             console.log('$Core.getJsonUrl(): ' + $Core.getJsonUrl() + '\n');
         }
     ]);
+
+

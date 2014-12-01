@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-	<main role="main" ng-controller="PagesCtrl">
+	<main role="main" ng-controller="PostsCtrl">
 		<!-- section -->
 		<section>
 

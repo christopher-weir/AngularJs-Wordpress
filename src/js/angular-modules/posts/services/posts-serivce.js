@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('pages')
+angular.module('posts')
 
-.factory('$Pages', [
+.factory('$Posts', [
 
 
     '$http',
@@ -12,7 +12,7 @@ angular.module('pages')
 
         return  {
 
-            getPageById: function( _id, callback ){
+            getPostById: function( _id, callback ){
 
                 $http({
 
@@ -28,7 +28,7 @@ angular.module('pages')
                 });
             },
 
-            getPages: function( callback ){
+            getPosts: function( callback ){
 
                 $http({
 
