@@ -6,7 +6,8 @@ var gulp = require('gulp'),
     concat = require('gulp-concat'),
     minifyHTML = require('gulp-minify-html'),
     minifyCSS = require('gulp-minify-css'),
-    replace = require('gulp-replace')
+    replace = require('gulp-replace'),
+    rename = require('gulp-rename')
     ;
 
 // Task: less
@@ -47,8 +48,8 @@ gulp.task('concact-watch', function() {
 
 gulp.task('concact-build', function() {
     gulp.src([
-        './src/bower_components/angular/angular.js',
-        './src/bower_components/angular-ui-router/release/angular-ui-router.js',
+        './src/bower_components/angular/angular.min.js',
+        './src/bower_components/angular-ui-router/release/angular-ui-router.min.js',
         './src/js/config.js',
         './src/js/app.js',
         './src/js/angular-modules/**/*.js',
@@ -56,6 +57,15 @@ gulp.task('concact-build', function() {
     ])
         .pipe(concat('app.js'))
         .pipe(gulp.dest('./src/dist/'))
+});
+
+
+
+// Task: move map files
+gulp.task('move-files', function() {
+    gulp.src('./src/bower_components/angular/angular.min.js.map')
+        .pipe(rename('angular.min.js.map'))
+        .pipe(gulp.dest('./www/wp-content/themes/AngularJs/js'));
 });
 
 
@@ -108,6 +118,7 @@ gulp.task('build', function() {
     runSequence(
         'less-build',
         'concact-build',
+        'move-files',
         'compress-js',
         'compress-css',
         function() {
