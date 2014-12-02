@@ -14,13 +14,12 @@
 
 
         <?php wp_head(); ?>
-        <script src="<?php echo get_template_directory_uri(); ?>/js/app.js"></script>
 
     </head>
-    <body <?php body_class(); ?>  class="ng-cloak" ng-controller="SiteCtrl">
+    <body <?php body_class(); ?> ng-controller="SiteCtrl">
 
         <!-- wrapper -->
-        <div class="wrapper">
+        <div class="wrapper" class="ng-cloak">
 
             <!-- header -->
             <header class="header clear" role="banner">
