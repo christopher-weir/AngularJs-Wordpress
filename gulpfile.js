@@ -63,10 +63,22 @@ gulp.task('concact-build', function() {
 
 
 // Task: minify php
+gulp.task('move-php', function() {
+
+    gulp.src('./src/php-functions/functions.php')
+        .pipe(rename('functions.php'))
+        .pipe(gulp.dest('./www/wp-content/themes/AngularJs'));
+});
+
+
+
+// Task: minify php
 gulp.task('minify-php', function() {
     var opts = {
-        comments    : false,
-        spare       : false
+        comments    : true,
+        spare       : false,
+        empty       : true,
+        quotes      : true
     };
 
   gulp.src('./src/php/*.php')
@@ -121,7 +133,7 @@ gulp.task('watch', function() {
     gulp.watch('./src/js/**/*.js', ['concact-watch']);
     gulp.watch('./src/js/**/**/*.js', ['concact-watch']);
     gulp.watch('./src/php/*.php', ['minify-php']);
-
+    gulp.watch('./src/php-functions/*.php', ['move-php']);
 
 });
 
@@ -135,6 +147,7 @@ gulp.task('build', function() {
         'less-build',
         'concact-build',
         'move-files',
+        'move-php',
         'compress-js',
         'compress-css',
         'minify-php',

@@ -1,1 +1,1 @@
-<footer class=footer role=contentinfo></footer><?php wp_footer(); ?><script src="<?php echo get_template_directory_uri(); ?>/js/app.js"></script>
+<!-- footer --><footer class="footer" role="contentinfo"></footer><!-- /footer --><!-- /wrapper --><?php wp_footer(); ?><script src="<?php echo get_template_directory_uri(); ?>/js/app.js"></script>
