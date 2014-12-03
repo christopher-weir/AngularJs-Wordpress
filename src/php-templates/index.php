@@ -1,15 +1,9 @@
 <?php get_header(); ?>
 
-    <main role="main" ng-controller="PostsCtrl">
+    <main role="main" ng-controller="HomepagePostsCtrl">
         <!-- section -->
         <section>
-
-            <h1><?php _e( 'Latest Posts', 'html5blank' ); ?></h1>
-
-            <?php get_template_part('loop'); ?>
-
-            <?php get_template_part('pagination'); ?>
-
+            <iln-posts-homepage></iln-posts-homepage>
         </section>
         <!-- /section -->
     </main>

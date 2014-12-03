@@ -1,1 +1,1 @@
-<?php get_header(); ?><main role="main" ng-controller="PostsCtrl"><section><h1><?php _e( 'Latest Posts', 'html5blank' ); ?></h1> <?php get_template_part('loop'); ?> <?php get_template_part('pagination'); ?></section></main> <?php get_footer(); ?>
+<?php get_header(); ?><main role="main" ng-controller="HomepagePostsCtrl"><section><iln-posts-homepage></iln-posts-homepage></section></main> <?php get_footer(); ?>

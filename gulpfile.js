@@ -40,9 +40,9 @@ gulp.task('concact-watch', function() {
         './src/bower_components/angular-ui-router/release/angular-ui-router.js',
         './src/js/config.js',
         './src/js/app.js',
-        './src/dist/templates.js',
         './src/js/angular-modules/**/*.js',
-        './src/js/angular-modules/**/**/*.js'
+        './src/js/angular-modules/**/**/*.js',
+        './src/dist/templates.js'
     ])
         .pipe(concat('app.js'))
         .pipe(gulp.dest('./www/wp-content/themes/AngularJs/js'))
@@ -56,7 +56,8 @@ gulp.task('concact-build', function() {
         './src/js/config.js',
         './src/js/app.js',
         './src/js/angular-modules/**/*.js',
-        './src/js/angular-modules/**/**/*.js'
+        './src/js/angular-modules/**/**/*.js',
+        './src/dist/templates.js'
     ])
         .pipe(concat('app.js'))
         .pipe(gulp.dest('./src/dist/'))
@@ -129,8 +130,8 @@ gulp.task('minify-html', function() {
             quotes: true
         }))
         .pipe(ngHtml2Js({
-            moduleName: 'someTemplates',
-            declareModule: true,
+            moduleName: 'core',
+            declareModule: false,
         }))
         .pipe(concat('templates.js'))
         .pipe(uglify())
@@ -147,11 +148,12 @@ gulp.task('watch', function() {
 
     // Watch the less files
     gulp.watch('./src/less/*.less', ['less-watch']);
+    gulp.watch('./src/less/**/*.less', ['less-watch']);
 
     gulp.watch('./src/js/*.js', ['concact-watch']);
 
-    gulp.watch('./src/js/angular-modules/*.js', ['concact-watch']);
-    gulp.watch('./src/js/angular-modules/**/*.js', ['concact-watch']);
+    gulp.watch('./src/js/angular-modules/*.js', ['minify-html', 'concact-watch']);
+    gulp.watch('./src/js/angular-modules/**/*.js', ['minify-html', 'concact-watch']);
     gulp.watch('./src/js/angular-modules/**/views/*.html', ['minify-html', 'concact-watch']);
 
     gulp.watch('./src/php-templates/*.php', ['minify-php']);
@@ -167,6 +169,7 @@ gulp.task('watch', function() {
 gulp.task('build', function() {
     runSequence(
         'less-build',
+        'minify-html',
         'concact-build',
         'compress-js',
         'compress-css',

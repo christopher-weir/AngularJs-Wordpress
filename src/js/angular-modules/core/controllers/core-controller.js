@@ -1,12 +1,12 @@
 'use strict';
 
-angular.module('posts')
+angular.module('core')
     .controller('SiteCtrl', [
         '$scope',
         '$Core',
         function ( $scope, $Core ) {
             console.log('loaded');
-            console.log('$Core.getJsonUrl(): ' + $Core.getJsonUrl() + '\n');
+//            console.log('$Core.getJsonUrl(): ' + $Core.getJsonUrl() + '\n');
         }
     ]);
 
