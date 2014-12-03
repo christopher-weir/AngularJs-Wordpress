@@ -1147,6 +1147,30 @@ html {
 body {
   color: #000000;
 }
-.pages {
+.homepage-posts {
   background-color: teal;
+  letter-spacing: -0.31em;
+  *letter-spacing: normal;
+  *word-spacing: -0.43em;
+  text-rendering: optimizespeed;
+  font-family: FreeSans, Arimo, "Droid Sans", Helvetica, Arial, sans-serif;
+  display: -webkit-flex;
+  -webkit-flex-flow: row wrap;
+  display: -ms-flexbox;
+  -ms-flex-flow: row wrap;
+  word-spacing: -0.43em;
+}
+.homepage-post {
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+  letter-spacing: normal;
+  word-spacing: normal;
+  vertical-align: top;
+  text-rendering: auto;
+  width: 100%;
+}
+.homepage-post .inner {
+  margin-bottom: 20px;
+  background-color: #f1f1f1;
 }

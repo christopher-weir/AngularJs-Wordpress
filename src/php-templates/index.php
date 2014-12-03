@@ -2,9 +2,9 @@
 
     <main role="main" ng-controller="HomepagePostsCtrl">
         <!-- section -->
-        <section>
-            <iln-posts-homepage></iln-posts-homepage>
-        </section>
+
+        <iln-posts-homepage></iln-posts-homepage>
+
         <!-- /section -->
     </main>
 
