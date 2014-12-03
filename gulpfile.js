@@ -4,11 +4,10 @@ var gulp = require('gulp'),
     runSequence = require('run-sequence'),
     uglify = require('gulp-uglify'),
     concat = require('gulp-concat'),
-    minifyHTML = require('gulp-minify-html'),
     minifyCSS = require('gulp-minify-css'),
     replace = require('gulp-replace'),
     rename = require('gulp-rename'),
-    minifyHTML = require('gulp-minify-html')
+    htmlclean = require('gulp-htmlclean')
     ;
 
 // Task: less
@@ -74,16 +73,11 @@ gulp.task('move-php', function() {
 
 // Task: minify php
 gulp.task('minify-php', function() {
-    var opts = {
-        comments    : true,
-        spare       : false,
-        empty       : true,
-        quotes      : true
-    };
 
-  gulp.src('./src/php/*.php')
-    .pipe(minifyHTML(opts))
-    .pipe(gulp.dest('./www/wp-content/themes/AngularJs/'))
+    gulp.src('./src/php-templates/*.php')
+        .pipe(htmlclean())
+        .pipe(gulp.dest('./www/wp-content/themes/AngularJs/'));
+
 });
 
 
@@ -132,7 +126,7 @@ gulp.task('watch', function() {
     gulp.watch('./src/js/*.js', ['concact-watch']);
     gulp.watch('./src/js/**/*.js', ['concact-watch']);
     gulp.watch('./src/js/**/**/*.js', ['concact-watch']);
-    gulp.watch('./src/php/*.php', ['minify-php']);
+    gulp.watch('./src/php-templates/*.php', ['minify-php']);
     gulp.watch('./src/php-functions/*.php', ['move-php']);
 
 });
