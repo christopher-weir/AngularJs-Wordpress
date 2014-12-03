@@ -20,6 +20,15 @@ if (!isset($content_width))
     $content_width = 900;
 }
 
+function wp_api_encode_acf($data,$post,$context){
+	$data['meta'] = array_merge($data['meta'],get_fields($post['ID']));
+	return $data;
+}
+
+if( function_exists('get_fields') ){
+	add_filter('json_prepare_post', 'wp_api_encode_acf', 10, 3);
+}
+
 if (function_exists('add_theme_support'))
 {
     // Add Menu Support
