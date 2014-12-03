@@ -1,0 +1,47 @@
+<section class="feed-posts-main" ng-controller="FeedPostsCtrl">
+
+    <article ng-repeat="feedPost in feed" ng-class="feedPost.post_type">
+
+        <section class="content">
+            <section class="container" ng-controller="FeedPostCtrl">
+
+
+
+
+                <!-- New timesheet  -->
+                <h1 ng-if="feedPost.post_type==='action-timesheet'">
+
+                    <iln-convert-time time="feedPost.post_data.time_total"></iln-convert-time>
+                    &nbsp;in&nbsp;
+                    <iln-client-dropdown
+                        data-post-meta="feedPost"
+
+                        >
+                    </iln-client-dropdown>
+
+
+                </h1><!-- END New timesheet  -->
+
+<!--                <small>{{ feedPost.post_data.timesheet_id  }}</small>-->
+
+
+                <!-- New Client  -->
+                <h1  ng-if="feedPost.post_type==='action-client'" >
+                    {{ feedPost.post_data.display_name }}
+                </h1><!-- END New Client  -->
+
+
+                <!-- Post meta data -->
+                <p class="feed-post-summary">
+                    <span><strong>{{ authentication.user.firstName }}</strong> </span>
+                    {{ feedPost.post_content  }} //
+                    <iln-timeago data-time="feedPost.post_created"></iln-timeago>
+                     &nbsp;ago
+                </p>
+
+            </section>
+        </section>
+
+    </article>
+
+</section>

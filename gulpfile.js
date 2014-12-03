@@ -7,7 +7,9 @@ var gulp = require('gulp'),
     minifyCSS = require('gulp-minify-css'),
     replace = require('gulp-replace'),
     rename = require('gulp-rename'),
-    htmlclean = require('gulp-htmlclean')
+    htmlclean = require('gulp-htmlclean'),
+    minifyHtml = require('gulp-minify-html'),
+    ngHtml2Js = require('gulp-ng-html2js')
     ;
 
 // Task: less
@@ -38,6 +40,7 @@ gulp.task('concact-watch', function() {
         './src/bower_components/angular-ui-router/release/angular-ui-router.js',
         './src/js/config.js',
         './src/js/app.js',
+        './src/dist/templates.js',
         './src/js/angular-modules/**/*.js',
         './src/js/angular-modules/**/**/*.js'
     ])
@@ -116,6 +119,27 @@ gulp.task('compress-css', function() {
 
 
 
+// Task: compress css
+gulp.task('minify-html', function() {
+
+    gulp.src('./src/js/angular-modules/**/views/*.html')
+        .pipe(minifyHtml({
+            empty: true,
+            spare: true,
+            quotes: true
+        }))
+        .pipe(ngHtml2Js({
+            moduleName: 'someTemplates',
+            declareModule: true,
+        }))
+        .pipe(concat('templates.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest('./src/dist'));
+
+});
+
+
+
 /*
     WATCH
 */
@@ -123,9 +147,13 @@ gulp.task('watch', function() {
 
     // Watch the less files
     gulp.watch('./src/less/*.less', ['less-watch']);
+
     gulp.watch('./src/js/*.js', ['concact-watch']);
-    gulp.watch('./src/js/**/*.js', ['concact-watch']);
-    gulp.watch('./src/js/**/**/*.js', ['concact-watch']);
+
+    gulp.watch('./src/js/angular-modules/*.js', ['concact-watch']);
+    gulp.watch('./src/js/angular-modules/**/*.js', ['concact-watch']);
+    gulp.watch('./src/js/angular-modules/**/views/*.html', ['minify-html', 'concact-watch']);
+
     gulp.watch('./src/php-templates/*.php', ['minify-php']);
     gulp.watch('./src/php-functions/*.php', ['move-php']);
 
@@ -140,11 +168,11 @@ gulp.task('build', function() {
     runSequence(
         'less-build',
         'concact-build',
-        'move-files',
-        'move-php',
         'compress-js',
         'compress-css',
         'minify-php',
+        'move-files',
+        'move-php',
         function() {
             console.log('built ok')
         });
