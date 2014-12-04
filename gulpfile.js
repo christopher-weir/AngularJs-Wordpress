@@ -1,15 +1,17 @@
-var gulp = require('gulp'),
-    less = require('gulp-less'),
-    path = require('path'),
-    runSequence = require('run-sequence'),
-    uglify = require('gulp-uglify'),
-    concat = require('gulp-concat'),
-    minifyCSS = require('gulp-minify-css'),
-    replace = require('gulp-replace'),
-    rename = require('gulp-rename'),
-    htmlclean = require('gulp-htmlclean'),
-    minifyHtml = require('gulp-minify-html'),
-    ngHtml2Js = require('gulp-ng-html2js')
+var gulp            = require('gulp'),
+    less            = require('gulp-less'),
+    path            = require('path'),
+    runSequence     = require('run-sequence'),
+    uglify          = require('gulp-uglify'),
+    concat          = require('gulp-concat'),
+    minifyCSS       = require('gulp-minify-css'),
+    replace         = require('gulp-replace'),
+    rename          = require('gulp-rename'),
+    htmlclean       = require('gulp-htmlclean'),
+    minifyHtml      = require('gulp-minify-html'),
+    ngHtml2Js       = require('gulp-ng-html2js'),
+    imagemin        = require('gulp-imagemin'),
+    pngquant        = require('imagemin-pngquant')
     ;
 
 // Task: less
@@ -116,6 +118,19 @@ gulp.task('compress-css', function() {
         }))
         .pipe(replace('/*!', '/*'))
         .pipe(gulp.dest('./www/wp-content/themes/AngularJs/'))
+});
+
+
+
+// Task: concact
+gulp.task('compress-images', function() {
+    gulp.src('./src/assets/images/*')
+        .pipe(imagemin({
+            progressive: true,
+            svgoPlugins: [{removeViewBox: false}],
+            use: [pngquant()]
+        }))
+        .pipe(gulp.dest('./www/wp-content/themes/AngularJs/assets/images'));
 });
 
 
