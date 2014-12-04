@@ -10,8 +10,7 @@ var gulp            = require('gulp'),
     htmlclean       = require('gulp-htmlclean'),
     minifyHtml      = require('gulp-minify-html'),
     ngHtml2Js       = require('gulp-ng-html2js'),
-    imagemin        = require('gulp-imagemin'),
-    pngquant        = require('imagemin-pngquant')
+    imagemin        = require('gulp-imagemin')
     ;
 
 // Task: less
@@ -124,15 +123,18 @@ gulp.task('compress-css', function() {
 
 // Task: concact
 gulp.task('compress-images', function() {
+
     gulp.src('./src/assets/images/*')
-        .pipe(imagemin({
-            progressive: true,
-            svgoPlugins: [{removeViewBox: false}],
-            use: [pngquant()]
-        }))
+        .pipe(imagemin())
         .pipe(gulp.dest('./www/wp-content/themes/AngularJs/assets/images'));
 });
 
+gulp.task('compress-images-02', function() {
+
+    gulp.src('./src/assets/screenshot/screenshot.png')
+        .pipe(imagemin())
+        .pipe(gulp.dest('./www/wp-content/themes/AngularJs/'));
+});
 
 
 // Task: compress css
@@ -191,6 +193,8 @@ gulp.task('build', function() {
         'minify-php',
         'move-files',
         'move-php',
+        'compress-images',
+        'compress-images-02',
         function() {
             console.log('built ok')
         });
