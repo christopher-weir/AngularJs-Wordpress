@@ -8,8 +8,6 @@ angular.module('posts')
 
             $scope.posts = null;
 
-            console.log('test');
-
             $Posts.getPosts( function(_data){
                 $scope.posts = _data;
             });
