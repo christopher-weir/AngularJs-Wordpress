@@ -1,7 +1,7 @@
 'use strict';
 
 // Setting up route
-angular.module('posts').config(['$stateProvider', '$urlRouterProvider',
+angular.module('pages').config(['$stateProvider', '$urlRouterProvider',
     function($stateProvider, $urlRouterProvider) {
 
         // Redirect to home view when route not found
@@ -9,8 +9,8 @@ angular.module('posts').config(['$stateProvider', '$urlRouterProvider',
         var isUserLoggedIn = window.isUserLoggedIn;
         // Home state routing
         $stateProvider.
-        state('post', {
-            url: '/post',
+        state('pages', {
+            url: '/pages',
             templateUrl: function (){
                 if( isUserLoggedIn ){
 
