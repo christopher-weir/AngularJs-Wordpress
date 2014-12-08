@@ -6,7 +6,6 @@ angular.module('core')
         '$ilnCore',
         function ( $scope, $ilnCore ) {
             console.log('loaded');
-//            console.log('$Core.getJsonUrl(): ' + $Core.getJsonUrl() + '\n');
         }
     ]);
 
