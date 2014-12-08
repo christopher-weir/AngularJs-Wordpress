@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('core')
+angular.module('about')
     .controller('AboutCtrl', [
         '$scope',
         '$ilnCore',

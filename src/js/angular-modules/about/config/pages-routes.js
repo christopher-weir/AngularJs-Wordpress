@@ -1,7 +1,7 @@
 'use strict';
 
 // Setting up route
-angular.module('pages').config(['$stateProvider', '$urlRouterProvider',
+angular.module('about').config(['$stateProvider', '$urlRouterProvider',
     function($stateProvider, $urlRouterProvider) {
 
         // Redirect to home view when route not found
