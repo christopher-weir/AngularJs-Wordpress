@@ -38,6 +38,7 @@ gulp.task('less-build', function () {
 gulp.task('concact-watch', function() {
     gulp.src([
         './src/bower_components/angular/angular.js',
+        './src/bower_components/angular/angular-sanitize.js',
         './src/bower_components/angular-ui-router/release/angular-ui-router.js',
         './src/js/config.js',
         './src/js/app.js',
@@ -53,6 +54,7 @@ gulp.task('concact-watch', function() {
 gulp.task('concact-build', function() {
     gulp.src([
         './src/bower_components/angular/angular.min.js',
+        './src/bower_components/angular/angular-sanitize.min.js',        
         './src/bower_components/angular-ui-router/release/angular-ui-router.min.js',
         './src/js/config.js',
         './src/js/app.js',
