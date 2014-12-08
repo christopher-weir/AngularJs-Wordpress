@@ -3,8 +3,8 @@
 angular.module('core')
     .controller('SiteCtrl', [
         '$scope',
-        '$Core',
-        function ( $scope, $Core ) {
+        '$ilnCore',
+        function ( $scope, $ilnCore ) {
             console.log('loaded');
 //            console.log('$Core.getJsonUrl(): ' + $Core.getJsonUrl() + '\n');
         }

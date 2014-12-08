@@ -6,9 +6,9 @@ angular.module('posts')
 
 
     '$http',
-    '$Core',
+    '$ilnCore',
 
-    function( $http, $Core ) {
+    function( $http, $ilnCore ) {
 
         return  {
 
@@ -17,7 +17,7 @@ angular.module('posts')
                 $http({
 
                     method  : 'GET',
-                    url     : $Core.getJsonUrl() + 'posts?filter[category_name]=' + _category
+                    url     : $ilnCore.getJsonUrl() + 'posts?filter[category_name]=' + _category
 
                 }).
                 success(function(data) {
@@ -33,7 +33,7 @@ angular.module('posts')
                 $http({
 
                     method  : 'GET',
-                    url     : $Core.getJsonUrl() + 'posts/' + String( _id )
+                    url     : $ilnCore.getJsonUrl() + 'posts/' + String( _id )
 
                 }).
                 success(function(data) {
@@ -49,7 +49,7 @@ angular.module('posts')
                 $http({
 
                     method  : 'GET',
-                    url     : $Core.getJsonUrl() + 'posts'
+                    url     : $ilnCore.getJsonUrl() + 'posts'
 
                 }).
                 success(function(data) {

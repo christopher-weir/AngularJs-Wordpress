@@ -2,7 +2,7 @@
 
 angular.module('core')
 
-.factory('$ilnCore', [
+.factory('$ilnCoreTaxonomies', [
 
 
     '$http',

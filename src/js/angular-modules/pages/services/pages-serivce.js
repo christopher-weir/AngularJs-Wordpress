@@ -6,9 +6,9 @@ angular.module('pages')
 
 
     '$http',
-    '$Core',
+    '$ilnCore',
 
-    function( $http, $Core ) {
+    function( $http, $ilnCore ) {
 
         return  {
 
@@ -17,7 +17,7 @@ angular.module('pages')
                 $http({
 
                     method  : 'GET',
-                    url     : $Core.getJsonUrl() + 'posts/' + String( _id )
+                    url     : $ilnCore.getJsonUrl() + 'posts/' + String( _id )
 
                 }).
                 success(function(data) {
@@ -33,7 +33,7 @@ angular.module('pages')
                 $http({
 
                     method  : 'GET',
-                    url     : $Core.getJsonUrl() + 'posts?type[]=page'
+                    url     : $ilnCore.getJsonUrl() + 'posts?type[]=page'
 
                 }).
                 success(function(data) {
