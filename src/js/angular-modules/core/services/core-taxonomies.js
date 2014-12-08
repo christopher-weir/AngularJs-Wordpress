@@ -6,21 +6,74 @@ angular.module('core')
 
 
     '$http',
+    '$ilnCore',
 
-    function( $http ) {
-
-        var jsonUrl = null;
+    function( $http, $ilnCore ) {
 
         return  {
 
-            getJsonUrl: function(){
+            getCategories: function( callback ){
 
-                if( jsonUrl === null ){
-                    jsonUrl = document.querySelector("link[rel='https://github.com/WP-API/WP-API']").href + '/';
-                    return jsonUrl;
-                }else{
-                    return jsonUrl;
-                }
+                $http({
+
+                    method  : 'GET',
+                    url     : $ilnCore.getJsonUrl() + 'taxonomies/category/terms'
+
+                }).
+                success(function(data) {
+                    callback( data );
+                }).
+                error(function (data) {
+                    callback( data );
+                });
+            },
+
+            getTaxonomyTerms: function( _taxonomy, callback ){
+
+                $http({
+
+                    method  : 'GET',
+                    url     : $ilnCore.getJsonUrl() + 'taxonomies/' + _taxonomy + '/terms'
+
+                }).
+                success(function(data) {
+                    callback( data );
+                }).
+                error(function (data) {
+                    callback( data );
+                });
+            },
+
+            getTaxonomy: function( _taxonomy, callback ){
+
+                $http({
+
+                    method  : 'GET',
+                    url     : $ilnCore.getJsonUrl() + 'taxonomies/' + _taxonomy
+
+                }).
+                success(function(data) {
+                    callback( data );
+                }).
+                error(function (data) {
+                    callback( data );
+                });
+            },
+
+            getTaxonomies: function( callback ){
+
+                $http({
+
+                    method  : 'GET',
+                    url     : $ilnCore.getJsonUrl() + 'taxonomies'
+
+                }).
+                success(function(data) {
+                    callback( data );
+                }).
+                error(function (data) {
+                    callback( data );
+                });
             }
 
         };
