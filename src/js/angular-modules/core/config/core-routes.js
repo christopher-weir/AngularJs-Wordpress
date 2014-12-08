@@ -11,14 +11,7 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
         $stateProvider.
         state('home', {
             url: '/',
-            templateUrl: function (){
-                if( isUserLoggedIn ){
-
-                    return 'modules/feed/views/feed.html';
-                }else{
-                    return 'modules/core/views/home.client.view.html';
-                }
-            }
+            templateUrl: 'homepage/views/homepage.html' 
         });
     }
 ]);

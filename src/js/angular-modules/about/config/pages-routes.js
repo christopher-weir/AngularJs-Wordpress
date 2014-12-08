@@ -12,8 +12,8 @@ angular.module('pages').config(['$stateProvider', '$urlRouterProvider',
         $stateProvider.
         state('about', {
             url: '/about',
-            controller: 'ProfileCtrl',
-            templateUrl: 'pages/views/about.page.html'
+            controller: 'AboutCtrl',
+            templateUrl: 'about/views/about.page.html'
         })
 
         ;

@@ -11,9 +11,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="<?php bloginfo('description'); ?>">
 
-
-
         <?php wp_head(); ?>
+        
+        <script src="<?php echo get_template_directory_uri(); ?>/js/app.js"></script>
 
     </head>
     <body <?php body_class(); ?> ng-controller="SiteCtrl">

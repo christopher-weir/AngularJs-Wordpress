@@ -1,9 +1,7 @@
 <?php get_header(); ?>
 
-    <main role="main" ng-controller="HomepagePostsCtrl">
+    <main role="main" data-ui-view>
         <!-- section -->
-
-        <iln-posts-homepage></iln-posts-homepage>
 
         <!-- /section -->
     </main>
