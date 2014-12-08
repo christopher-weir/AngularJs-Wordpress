@@ -15,11 +15,12 @@ angular.module('home')
             }
 
             $ilnPosts.getPosts(function( _data ){
+                console.log(_data);
                 $scope.posts = _data;
             });
 
             $ilnTaxonomies.getCategories(function( _data ){
-                console.log( _data );
+//                console.log( _data );
             });
 
         }

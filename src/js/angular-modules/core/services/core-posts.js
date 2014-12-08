@@ -12,6 +12,22 @@ angular.module('core')
 
         return  {
 
+            getCustomPostType: function( _slug, callback ){
+
+                $http({
+
+                    method  : 'GET',
+                    url     : $ilnCore.getJsonUrl() + 'posts?type[]=' + _slug
+
+                }).
+                success(function(data) {
+                    callback( data );
+                }).
+                error(function (data) {
+                    callback( data );
+                });
+            },
+
             getPostByCategoryName: function( _category, callback ){
 
                 $http({
