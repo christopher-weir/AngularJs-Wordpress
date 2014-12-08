@@ -10,15 +10,9 @@ angular.module('posts').config(['$stateProvider', '$urlRouterProvider',
         // Home state routing
         $stateProvider.
         state('post', {
-            url: '/post',
-            templateUrl: function (){
-                if( isUserLoggedIn ){
-
-                    return 'modules/feed/views/feed.html';
-                }else{
-                    return 'modules/core/views/home.client.view.html';
-                }
-            }
+            url: '/post/:id',
+            controller: 'UserCtrl',
+            templateUrl: 'posts/views/single.post.page.html'
         });
     }
 ]);

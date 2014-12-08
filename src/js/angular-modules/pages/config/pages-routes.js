@@ -6,19 +6,16 @@ angular.module('pages').config(['$stateProvider', '$urlRouterProvider',
 
         // Redirect to home view when route not found
         $urlRouterProvider.otherwise('/');
-        var isUserLoggedIn = window.isUserLoggedIn;
+        
+        
         // Home state routing
         $stateProvider.
-        state('pages', {
-            url: '/pages',
-            templateUrl: function (){
-                if( isUserLoggedIn ){
+        state('about', {
+            url: '/about',
+            controller: 'ProfileCtrl',
+            templateUrl: 'pages/views/about.page.html'
+        })
 
-                    return 'modules/feed/views/feed.html';
-                }else{
-                    return 'modules/core/views/home.client.view.html';
-                }
-            }
-        });
+        ;
     }
 ]);
