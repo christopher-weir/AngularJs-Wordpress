@@ -40,6 +40,7 @@ gulp.task('concact-watch', function() {
         './src/bower_components/angular/angular.js',
         './src/bower_components/angular/angular-sanitize.js',
         './src/bower_components/angular-ui-router/release/angular-ui-router.js',
+        './src/lib/AngularJs-Wordpress-Rest-Api/angular-wp-rest.js',
         './src/js/config.js',
         './src/js/app.js',
         './src/js/angular-modules/**/*.js',
@@ -48,14 +49,18 @@ gulp.task('concact-watch', function() {
     ])
         .pipe(concat('app.js'))
         .pipe(gulp.dest('./www/wp-content/themes/AngularJs/js'))
+        .pipe(uglify())
+        .pipe(rename('app.min.js'))
+        .pipe(gulp.dest('./www/wp-content/themes/AngularJs/js'))
 });
 
 
 gulp.task('concact-build', function() {
     gulp.src([
         './src/bower_components/angular/angular.min.js',
-        './src/bower_components/angular/angular-sanitize.min.js',        
+        './src/bower_components/angular/angular-sanitize.min.js',
         './src/bower_components/angular-ui-router/release/angular-ui-router.min.js',
+        './src/lib/AngularJs-Wordpress-Rest-Api/angular-wp-rest.js',
         './src/js/config.js',
         './src/js/app.js',
         './src/js/angular-modules/**/*.js',
@@ -63,7 +68,10 @@ gulp.task('concact-build', function() {
         './src/dist/templates.js'
     ])
         .pipe(concat('app.js'))
-        .pipe(gulp.dest('./src/dist/'))
+        .pipe(gulp.dest('./www/wp-content/themes/AngularJs/js'))
+        .pipe(uglify())
+        .pipe(rename('app.min.js'))
+        .pipe(gulp.dest('./www/wp-content/themes/AngularJs/js'))
 });
 
 
