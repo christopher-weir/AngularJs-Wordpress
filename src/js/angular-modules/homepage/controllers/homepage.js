@@ -4,9 +4,9 @@ angular.module('home')
     .controller('HomeCtrl', [
         '$scope',
         '$sce',
-        '$ilnPosts',
-        '$ilnTaxonomies',
-        function ( $scope, $sce, $ilnPosts, $ilnTaxonomies ) {
+        '$ilnWpPosts',
+        '$ilnWpTaxonomies',
+        function ( $scope, $sce, $ilnWpPosts, $ilnWpTaxonomies ) {
 
             $scope.posts = null;
 
@@ -14,12 +14,12 @@ angular.module('home')
                 return $sce.trustAsHtml(html_code);
             }
 
-            $ilnPosts.getPosts(function( _data ){
+            $ilnWpPosts.getPosts(function( _data ){
                 console.log(_data);
                 $scope.posts = _data;
             });
 
-            $ilnTaxonomies.getCategories(function( _data ){
+            $ilnWpTaxonomies.getCategories(function( _data ){
 //                console.log( _data );
             });
 

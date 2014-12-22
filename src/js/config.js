@@ -4,7 +4,7 @@
 var ApplicationConfiguration = (function() {
     // Init module configuration options
     var applicationModuleName = 'wordpressAngular';
-    var applicationModuleVendorDependencies = [ 'ui.router' ];
+    var applicationModuleVendorDependencies = [ 'ui.router', 'ilnAngularWp' ];
 
     // Add a new vertical module
     var registerModule = function(moduleName, dependencies) {

@@ -3,8 +3,7 @@
 angular.module('about')
     .controller('AboutCtrl', [
         '$scope',
-        '$ilnCore',
-        function ( $scope, $ilnCore ) {
+        function ( $scope ) {
             console.log('about loaded');
         }
     ]);
