@@ -132,14 +132,14 @@ gulp.task('compress-css', function() {
 
 
 // Task: concact
-gulp.task('compress-images', function() {
+gulp.task('compress-images-assets', function() {
 
     gulp.src('./src/assets/images/*')
         .pipe(imagemin())
         .pipe(gulp.dest('./www/wp-content/themes/AngularJs/assets/images'));
 });
 
-gulp.task('compress-images-02', function() {
+gulp.task('compress-images-theme', function() {
 
     gulp.src('./src/assets/screenshot/screenshot.png')
         .pipe(imagemin())
@@ -203,8 +203,8 @@ gulp.task('build', function() {
         'minify-php',
         'move-files',
         'move-php',
-        'compress-images',
-        'compress-images-02',
+        'compress-images-assets',
+        'compress-images-theme',
         function() {
             console.log('built ok')
         });
