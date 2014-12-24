@@ -1,7 +1,7 @@
 'use strict';
 
 // Setting up route
-angular.module('page').config(['$stateProvider', '$urlRouterProvider',
+angular.module('post').config(['$stateProvider', '$urlRouterProvider',
     function($stateProvider, $urlRouterProvider) {
 
         // Redirect to home view when route not found
@@ -10,10 +10,10 @@ angular.module('page').config(['$stateProvider', '$urlRouterProvider',
 
         // Home state routing
         $stateProvider.
-        state('page', {
-            url: '/page/:id',
-            controller: 'PageCtrl',
-            templateUrl: 'page/views/page.html'
+        state('post', {
+            url: '/post/:id',
+            controller: 'PostCtrl',
+            templateUrl: 'post/views/post.html'
         })
 
         ;

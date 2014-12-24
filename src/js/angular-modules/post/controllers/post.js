@@ -1,11 +1,11 @@
 'use strict';
 
-angular.module('page')
-    .controller('PageCtrl', [
+angular.module('post')
+    .controller('PostCtrl', [
         '$scope',
         '$state',
         function ( $scope, $state ) {
-            console.log('page loaded');
+            console.log('post loaded');
 
             console.log('$state.current.name: ' + $state.current.name + '\n');
 

@@ -6,7 +6,8 @@ angular.module('home')
         '$sce',
         '$ilnWpPosts',
         '$ilnWpTaxonomies',
-        function ( $scope, $sce, $ilnWpPosts, $ilnWpTaxonomies ) {
+        '$ilnWpPages',
+        function ( $scope, $sce, $ilnWpPosts, $ilnWpTaxonomies, $ilnWpPages ) {
 
             $scope.posts = null;
 
@@ -19,8 +20,8 @@ angular.module('home')
                 $scope.posts = _data;
             });
 
-            $ilnWpTaxonomies.getCategories(function( _data ){
-//                console.log( _data );
+            $ilnWpPages.getPages(function( _data ){
+               console.log( _data );
             });
 
         }
