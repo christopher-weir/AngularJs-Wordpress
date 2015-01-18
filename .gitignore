@@ -15,9 +15,7 @@ www/wp-content/*
 www/wp-content/themes/*
 !www/wp-content/themes/AngularJs
 .DS_Store
-src/lib
 bower_components
 src/dist
-src/js/lib
 www/wp-content/themes/AngularJs/js/app.js
 www/wp-content/themes/AngularJs/js/angular.min.js.map
