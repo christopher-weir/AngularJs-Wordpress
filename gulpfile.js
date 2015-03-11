@@ -1,17 +1,39 @@
-var gulp            = require('gulp'),
-    less            = require('gulp-less'),
-    path            = require('path'),
-    runSequence     = require('run-sequence'),
-    uglify          = require('gulp-uglify'),
-    concat          = require('gulp-concat'),
-    minifyCSS       = require('gulp-minify-css'),
-    replace         = require('gulp-replace'),
-    rename          = require('gulp-rename'),
-    htmlclean       = require('gulp-htmlclean'),
-    minifyHtml      = require('gulp-minify-html'),
-    ngHtml2Js       = require('gulp-ng-html2js'),
-    imagemin        = require('gulp-imagemin')
-    ;
+var gulp            = require('gulp');
+var less            = require('gulp-less');
+var path            = require('path');
+var runSequence     = require('run-sequence');
+var uglify          = require('gulp-uglify');
+var concat          = require('gulp-concat');
+var minifyCSS       = require('gulp-minify-css');
+var replace         = require('gulp-replace');
+var rename          = require('gulp-rename');
+var htmlclean       = require('gulp-htmlclean');
+var minifyHtml      = require('gulp-minify-html');
+var ngHtml2Js       = require('gulp-ng-html2js');
+var imagemin        = require('gulp-imagemin');
+
+
+
+
+var file_paths = {
+
+    build_files: [
+        './src/bower_components/angular/angular.js',
+        './src/bower_components/angular/angular-sanitize.js',
+        './src/bower_components/angular-ui-router/release/angular-ui-router.js',
+        './src/lib/AngularJs-Wordpress-Rest-Api/angular-wp-rest.js',
+        './src/js/config.js',
+        './src/js/app.js',
+        './src/js/angular-modules/**/*.js',
+        './src/js/angular-modules/**/**/*.js',
+        './src/dist/templates.js'
+    ]
+};
+
+
+
+
+
 
 // Task: less
 gulp.task('less-watch', function () {
@@ -36,17 +58,7 @@ gulp.task('less-build', function () {
 
 // Task: concact
 gulp.task('concact-watch', function() {
-    gulp.src([
-        './src/bower_components/angular/angular.js',
-        './src/bower_components/angular/angular-sanitize.js',
-        './src/bower_components/angular-ui-router/release/angular-ui-router.js',
-        './src/lib/AngularJs-Wordpress-Rest-Api/angular-wp-rest.js',
-        './src/js/config.js',
-        './src/js/app.js',
-        './src/js/angular-modules/**/*.js',
-        './src/js/angular-modules/**/**/*.js',
-        './src/dist/templates.js'
-    ])
+    gulp.src( file_paths.build_files )
         .pipe(concat('app.js'))
         .pipe(gulp.dest('./www/wp-content/themes/AngularJs/js'))
         .pipe(uglify())
@@ -56,17 +68,7 @@ gulp.task('concact-watch', function() {
 
 
 gulp.task('concact-build', function() {
-    gulp.src([
-        './src/bower_components/angular/angular.min.js',
-        './src/bower_components/angular/angular-sanitize.min.js',
-        './src/bower_components/angular-ui-router/release/angular-ui-router.min.js',
-        './src/lib/AngularJs-Wordpress-Rest-Api/angular-wp-rest.js',
-        './src/js/config.js',
-        './src/js/app.js',
-        './src/js/angular-modules/**/*.js',
-        './src/js/angular-modules/**/**/*.js',
-        './src/dist/templates.js'
-    ])
+    gulp.src( file_paths.build_files )
         .pipe(concat('app.js'))
         .pipe(gulp.dest('./www/wp-content/themes/AngularJs/js'))
         .pipe(uglify())
