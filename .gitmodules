@@ -1,0 +1,3 @@
+[submodule "src/lib/AngularJs-Wordpress-Rest-Api"]
+	path = src/lib/AngularJs-Wordpress-Rest-Api
+	url = https://christopher-weir@github.com/christopher-weir/AngularJs-Wordpress-Rest-Api.git
