@@ -12,8 +12,10 @@
         <meta name="description" content="<?php bloginfo('description'); ?>">
 
         <?php wp_head(); ?>
-        
-        <script src="<?php echo get_template_directory_uri(); ?>/js/app.js"></script>
+
+        <!-- build:js -->
+            <script src="<?php echo get_template_directory_uri(); ?>/js/app.js"></script>
+        <!-- endbuild -->
 
     </head>
     <body <?php body_class(); ?> ng-controller="SiteCtrl">

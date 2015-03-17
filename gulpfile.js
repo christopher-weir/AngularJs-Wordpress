@@ -10,6 +10,7 @@ var rename          = require('gulp-rename');
 var htmlclean       = require('gulp-htmlclean');
 var minifyHtml      = require('gulp-minify-html');
 var ngHtml2Js       = require('gulp-ng-html2js');
+var htmlreplace     = require('gulp-html-replace');
 var imagemin        = require('gulp-imagemin');
 
 
@@ -17,7 +18,7 @@ var imagemin        = require('gulp-imagemin');
 
 var file_paths = {
 
-    build_files: [
+    js_files: [
         './src/bower_components/angular/angular.js',
         './src/bower_components/angular/angular-sanitize.js',
         './src/bower_components/angular-ui-router/release/angular-ui-router.js',
@@ -27,6 +28,11 @@ var file_paths = {
         './src/js/angular-modules/**/*.js',
         './src/js/angular-modules/**/**/*.js',
         './src/dist/templates.js'
+    ],
+    php_templates: [
+        './src/php-templates/footer.php',
+        './src/php-templates/header.php',
+        './src/php-templates/index.php'
     ]
 };
 
@@ -37,43 +43,40 @@ var file_paths = {
 
 // Task: less
 gulp.task('less-watch', function () {
-  gulp.src('./src/less/style.less')
-    .pipe(less({
-      paths: [ path.join(__dirname, 'less', 'includes') ]
-    }))
-    .pipe(gulp.dest('./www/wp-content/themes/AngularJs'));
+    return gulp.src('./src/less/style.less')
+        .pipe(less({
+            paths: [ path.join(__dirname, 'less', 'includes') ]
+        }))
+        .pipe(gulp.dest('./www/wp-content/themes/AngularJs'));
 });
 
 
 // Task: less
 gulp.task('less-build', function () {
-  gulp.src('./src/less/style.less')
-    .pipe(less({
-      paths: [ path.join(__dirname, 'less', 'includes') ]
-    }))
-    .pipe(gulp.dest('./src/dist/'));
+    return gulp.src('./src/less/style.less')
+        .pipe(less({
+            paths: [ path.join(__dirname, 'less', 'includes') ]
+        }))
+        .pipe(gulp.dest('./src/dist/'));
 });
 
 
 
 // Task: concact
 gulp.task('concact-watch', function() {
-    gulp.src( file_paths.build_files )
+    return gulp.src( file_paths.js_files )
         .pipe(concat('app.js'))
-        .pipe(gulp.dest('./www/wp-content/themes/AngularJs/js'))
-        .pipe(uglify())
-        .pipe(rename('app.min.js'))
-        .pipe(gulp.dest('./www/wp-content/themes/AngularJs/js'))
+        .pipe(rename('app.js'))
+        .pipe(gulp.dest('./www/wp-content/themes/AngularJs/js'));
 });
 
 
 gulp.task('concact-build', function() {
-    gulp.src( file_paths.build_files )
+    return gulp.src( file_paths.js_files )
         .pipe(concat('app.js'))
-        .pipe(gulp.dest('./www/wp-content/themes/AngularJs/js'))
         .pipe(uglify())
         .pipe(rename('app.min.js'))
-        .pipe(gulp.dest('./www/wp-content/themes/AngularJs/js'))
+        .pipe(gulp.dest('./www/wp-content/themes/AngularJs/js'));
 });
 
 
@@ -81,7 +84,7 @@ gulp.task('concact-build', function() {
 // Task: minify php
 gulp.task('move-php', function() {
 
-    gulp.src('./src/php-functions/functions.php')
+    return gulp.src('./src/php-functions/functions.php')
         .pipe(rename('functions.php'))
         .pipe(gulp.dest('./www/wp-content/themes/AngularJs'));
 });
@@ -91,7 +94,19 @@ gulp.task('move-php', function() {
 // Task: minify php
 gulp.task('minify-php', function() {
 
-    gulp.src('./src/php-templates/*.php')
+    return gulp.src( file_paths.php_templates )
+        .pipe(htmlclean())
+        .pipe(gulp.dest('./www/wp-content/themes/AngularJs/'));
+
+});
+
+// Task: build php
+gulp.task('build-php', function() {
+
+    return gulp.src( file_paths.php_templates )
+        .pipe(htmlreplace({
+            'js': '<script src="<?php echo get_template_directory_uri(); ?>/js/app.min.js"></script>'
+        }))
         .pipe(htmlclean())
         .pipe(gulp.dest('./www/wp-content/themes/AngularJs/'));
 
@@ -101,29 +116,18 @@ gulp.task('minify-php', function() {
 
 // Task: move map files
 gulp.task('move-files', function() {
-    gulp.src('./src/bower_components/angular/angular.min.js.map')
+    return gulp.src('./src/bower_components/angular/angular.min.js.map')
         .pipe(rename('angular.min.js.map'))
         .pipe(gulp.dest('./www/wp-content/themes/AngularJs/js'));
 });
 
 
 
-// Task: compress js
-gulp.task('compress-js', function() {
-    gulp.src(
-        './src/dist/app.js'
-    )
-        .pipe(uglify('app.js'))
-        .pipe(gulp.dest('./www/wp-content/themes/AngularJs/js'))
-});
-
-
-
 // Task: compress css
 gulp.task('compress-css', function() {
-    gulp.src(
-        './src/dist/*.css'
-    )
+    return gulp.src(
+            './src/dist/*.css'
+        )
         .pipe(minifyCSS({
             keepSpecialComments :   1
         }))
@@ -136,23 +140,23 @@ gulp.task('compress-css', function() {
 // Task: concact
 gulp.task('compress-images-assets', function() {
 
-    gulp.src('./src/assets/images/*')
-        .pipe(imagemin())
-        .pipe(gulp.dest('./www/wp-content/themes/AngularJs/assets/images'));
+    return gulp.src('./src/assets/images/*')
+            .pipe(imagemin())
+            .pipe(gulp.dest('./www/wp-content/themes/AngularJs/assets/images'));
 });
 
 gulp.task('compress-images-theme', function() {
 
-    gulp.src('./src/assets/screenshot/screenshot.png')
-        .pipe(imagemin())
-        .pipe(gulp.dest('./www/wp-content/themes/AngularJs/'));
+    return gulp.src('./src/assets/screenshot/screenshot.png')
+            .pipe(imagemin())
+            .pipe(gulp.dest('./www/wp-content/themes/AngularJs/'));
 });
 
 
 // Task: compress css
 gulp.task('minify-html', function() {
 
-    gulp.src('./src/js/angular-modules/**/views/*.html')
+    return gulp.src('./src/js/angular-modules/**/views/*.html')
         .pipe(minifyHtml({
             empty: true,
             spare: true,
@@ -200,9 +204,8 @@ gulp.task('build', function() {
         'less-build',
         'minify-html',
         'concact-build',
-        'compress-js',
         'compress-css',
-        'minify-php',
+        'build-php',
         'move-files',
         'move-php',
         'compress-images-assets',
